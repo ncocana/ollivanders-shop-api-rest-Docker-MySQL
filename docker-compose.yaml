@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  app:
+    image: ollivanders-mysql:latest
+    container_name: ollivanders-mysql
+    ports:
+      - "5000:5000"
+    depends_on:
+      - database
+  database:
+    image: mysql:latest
+    container_name: mysql-compose
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=ollivanders
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./database/mysql_data:/var/lib/mysql
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql

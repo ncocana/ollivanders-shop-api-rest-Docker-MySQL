@@ -1,0 +1,129 @@
+body {
+    background-image: url(../img/background.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CONTAINERS */
+
+#container-main {
+    width: 90%;
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.827);
+    box-shadow: 0 0 10px rgba(60, 60, 60, 0.668);
+    padding: 1%;
+    padding-bottom: 4%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-box-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.container-box-item-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-box-item-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-box-item-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 308px;
+    background-color: #e3cda4;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(60, 60, 60, 0.378);
+    border: 3px ridge rgba(0, 0, 0, 0.707);
+    position: sticky;
+    top: 20px;
+}
+
+/* INPUT, SELECT, BUTTON, ID */
+
+input, select {
+    display: inline-block;
+    padding: 10px;
+    width: 170px;
+}
+
+button {
+    display: inline-block;
+    padding: 10px;
+    width: 150px;
+    text-decoration: none;
+    border: 4px outset rgba(84, 58, 6, 0.707);
+    margin: 5px;
+}
+
+#output {
+    text-align: center;
+}
+
+.container-box-item-buttons button {
+    display: inline-block;
+    padding: 10px;
+    min-width: 150px;
+    text-decoration: none;
+    border: 4px outset rgba(84, 58, 6, 0.707);
+    margin: 5px;
+}
+
+/* TABLE */
+
+table {
+    text-align: left;
+    border-collapse: separate;
+    border-spacing: 5px 5px;
+}
+
+table td, table th {
+    padding: 5px 20px;
+    box-shadow: 0 0 10px rgba(60, 60, 60, 0.378);
+}
+
+table tr:nth-child(even) {
+    background: #EFE2C9;
+}
+
+table tr:nth-child(odd) td {
+    background-color: #EEEEEE;
+}
+
+table tbody td {
+    font-size: 13px;
+}
+
+table thead {
+    background: #8B6F16;
+    border-bottom: 5px solid #FFFFFF;
+}
+
+table thead th {
+    font-size: 17px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+table thead th:first-child {
+    border-left: none;
+}

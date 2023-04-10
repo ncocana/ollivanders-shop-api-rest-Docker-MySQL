@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+    <div class="container-box-item-header">
+        <h1>Inventory</h1>
+    </div>
+    
+    <div class="container-box-item">
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Item</th>
+                        <th>Sell in</th>
+                        <th>Quality</th>
+                        <th>Class</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in inventory %}
+                    <tr>
+                        <td>{{ item['id']  }}</td>
+                        <td>{{ item['name'] }}</td>
+                        <td>{{ item['sell_in']  }}</td>
+                        <td>{{ item['quality']  }}</td>
+                        <td>{{ item['class_object']  }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="container-box-item-buttons">
+            <button id="updateButton" type="submit">Update all items</button>
+            
+            <a href="/inventory/create"><button type="submit">Create new item</button></a>
+            <a href="/inventory/delete"><button type="submit">Delete item</button></a>
+            <a href="/"><button type="submit">Go back</button></a>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#updateButton').click(function() {
+                $.ajax({
+                    url: '/inventory',
+                    type: 'PUT',
+                    complete: function(response) {
+                        window.location.href = '/inventory/success';
+                    }
+                });
+            });
+        });
+    </script>
+
+{% endblock %}

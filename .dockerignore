@@ -1,0 +1,9 @@
+__pycache__
+.pytest_cache
+.tox
+.vscode
+coverage_annotation
+Ollivanders_Shop_API_Rest.egg-info
+venv
+database.db
+database/mysql_data

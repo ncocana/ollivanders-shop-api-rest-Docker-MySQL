@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+<html lang="es">
+    <head>
+        <title>Ollivanders</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+        <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div id="container-main">
+            {% block body %}{% endblock %}
+        </div>
+    </body>
+</html>

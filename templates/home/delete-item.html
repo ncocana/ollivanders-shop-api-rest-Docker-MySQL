@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+    <div class="container-box-item-header">
+        <h1>Delete an item</h1>
+        
+        <p>Introduce the ID of the item you want to delete.</p>
+    </div>
+
+    <div class="container-box-item-form">
+        <input id="deleteInput" name="id" placeholder="Item's ID" required type="number">
+        <button type="submit" id="deleteButton">Delete item</button>
+    </div>
+
+    <div id="output"></div>
+
+    <div class="container-box-item">
+        <a href="/inventory"><button type="submit">Go back</button></a>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#deleteButton').click(function() {
+                var data = $('#deleteInput').val();
+                $.ajax({
+                    url: '/inventory/delete',
+                    type: 'DELETE',
+                    data: {'id': data},
+                    dataType: "json",
+                    complete: function(response) {
+                        // console.log((JSON.parse(response.responseText)));
+                        listID = JSON.parse(response.responseText);
+                        let foundMatch = false;
+                        for (let i = 0; i < listID.length; i++) {
+                            if (listID[i] === parseInt(data)) {
+                                window.location.href = '/inventory/success';
+                                foundMatch = true;
+                                break; // stop iterating once a match is found
+                            }
+                        }
+
+                        if (!foundMatch && data != "") {
+                            $('#output').html("<p>The ID introduced is not valid.</p>");
+                        } else if (data == "") {
+                            $('#output').html("<p>No ID has been introduced.</p>");
+                        }
+                    }
+                });
+            });
+        });
+
+        $(document).ready(function() {
+            $('#deleteInput').on('input', function() {
+                var data = $('#deleteInput').val();
+                $.ajax({
+                    url: '/inventory/get',
+                    type: 'GET',
+                    data: {'id': data},
+                    dataType: "json",
+                    complete: function(response) {
+                        // console.log(response.responseJSON);
+                        if (response.status == 200) {
+                            item = response.responseJSON
+                            $('#output').html(`
+                                <div class='container-box-item'>
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Item</th>
+                                                <th>Sell in</th>
+                                                <th>Quality</th>
+                                                <th>Class</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>` + item['id'] + `</td>
+                                                <td>` + item['name'] + `</td>
+                                                <td>` + item['sell_in'] + `</td>
+                                                <td>` + item['quality'] + `</td>
+                                                <td>` + item['class_object'] + `</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>`);
+                        } else if (isNaN(data)) {
+                            $('#output').html("<p>The ID must be a number.</p>");
+                        } else if ((response.status == 404 || response.status == 400) && data != "") {
+                            $('#output').html("<p>Item not found.</p>");
+                        } else {
+                            $('#output').html("");
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}
