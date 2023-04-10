@@ -67,6 +67,8 @@ Let's start the tutorial:
 
     You can view the image created with the command: ```docker images```.   
 
+    To remove the image, get its ID or name with the command from above and do this command: ```docker rmi [image's ID or name]```. Using the image of above as example, the command would be: ```docker rmi ac6d8c993fa7```.
+
 4. Now, run the Docker compose file using the following command:
 
     ```
