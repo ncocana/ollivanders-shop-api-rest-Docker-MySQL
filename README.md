@@ -16,7 +16,7 @@
 
 ## Introduction
 
-**IMPORTANT:** This is a MySQL version in Docker of [Ollivanders Shop](https://github.com/ncocana/ollivanders-shop-api-rest). For a SQLite version in your local host or Docker, go to its respective repository. All required instructions to install and execute it, will be there.
+**IMPORTANT:** This is a MySQL version in Docker of Ollivanders Shop. For a SQLite version in your local host or Docker, go to [its respective repository](https://github.com/ncocana/ollivanders-shop-api-rest). All required instructions to install and execute it, will be there.
 
 Ollivanders Shop is a [REST API](https://en.wikipedia.org/wiki/Representational_state_transfer) that allows you to make [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) operations (such as get, update, create, or delete data from a database) using the website created for it. This website will allow you to see the content of the database and choose if you want to update it, insert new data, or delete an already existing one, by just hitting a button (and if neccessary, write the data asked to do such operations).   
 
