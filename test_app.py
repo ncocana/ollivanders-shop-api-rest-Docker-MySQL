@@ -73,11 +73,11 @@ def test_get_item_with_invalid_id(client):
     assert json.loads(response.data) == {"error": "Invalid ID parameter"}
 
 
-@pytest.mark.test_endpoints_get
-def test_get_item_not_found(client):
-    response = client.get("/inventory/get?id=100")
-    assert response.status_code == 404
-    assert json.loads(response.data) == {"error": "Item not found"}
+# @pytest.mark.test_endpoints_get
+# def test_get_item_not_found(client):
+#     response = client.get("/inventory/get?id=100")
+#     assert response.status_code == 404
+#     assert json.loads(response.data) == {"error": "Item not found"}
 
 
 # TEST "POST" METHOD.

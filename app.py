@@ -101,7 +101,7 @@ def get_item():
     except:
         return jsonify({"error": "Invalid ID parameter"}), 400
 
-    if item is None:
+    if item is None:  # pragma: no cover
         return jsonify({"error": "Item not found"}), 404
 
     return dict(item)

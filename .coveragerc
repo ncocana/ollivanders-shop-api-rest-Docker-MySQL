@@ -1,4 +1,4 @@
 [report]
-omit = test_app.py, ./test/*, setup.py, init-db.py
+omit = test_app.py, ./test/*, setup.py
 exclude_lines =
     pragma: no cover
