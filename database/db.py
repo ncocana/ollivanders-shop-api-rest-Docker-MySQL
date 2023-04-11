@@ -19,11 +19,11 @@ import mysql.connector
 
 def get_all_inventory():
     db = mysql.connector.connect(
-            host="database",
-            user="user",
-            password="password",
-            database="ollivanders",
-        )
+        host="database",
+        user="user",
+        password="password",
+        database="ollivanders",
+    )
     conn = db.cursor()
     conn.execute("SELECT * FROM inventory")
     column_names = [col[0] for col in conn.description]
@@ -40,11 +40,11 @@ def get_all_inventory():
 
 def get_item_by_id(id):
     db = mysql.connector.connect(
-            host="database",
-            user="user",
-            password="password",
-            database="ollivanders",
-        )
+        host="database",
+        user="user",
+        password="password",
+        database="ollivanders",
+    )
     conn = db.cursor()
     conn.execute("SELECT * FROM inventory WHERE id = %s", (id,))
     column_names = [col[0] for col in conn.description]
@@ -58,11 +58,11 @@ def get_item_by_id(id):
 
 def get_item_by_name(name):
     db = mysql.connector.connect(
-            host="database",
-            user="user",
-            password="password",
-            database="ollivanders",
-        )
+        host="database",
+        user="user",
+        password="password",
+        database="ollivanders",
+    )
     conn = db.cursor()
     item = conn.execute("SELECT * FROM inventory WHERE name = %s", (name,))
     column_names = [col[0] for col in conn.description]
@@ -70,18 +70,17 @@ def get_item_by_name(name):
 
     item = {column_names[i]: query[i] for i in range(len(column_names))}
 
-    
     conn.close()
     return item
 
 
 def update_item(sell_in, quality, id):
     db = mysql.connector.connect(
-            host="database",
-            user="user",
-            password="password",
-            database="ollivanders",
-        )
+        host="database",
+        user="user",
+        password="password",
+        database="ollivanders",
+    )
     conn = db.cursor()
     conn.execute(
         "UPDATE inventory SET sell_in = %s, quality = %s WHERE id = %s",
@@ -93,11 +92,11 @@ def update_item(sell_in, quality, id):
 
 def create_item(name, sell_in, quality, class_object):
     db = mysql.connector.connect(
-            host="database",
-            user="user",
-            password="password",
-            database="ollivanders",
-        )
+        host="database",
+        user="user",
+        password="password",
+        database="ollivanders",
+    )
     conn = db.cursor()
     conn.execute(
         "INSERT INTO inventory (name, sell_in, quality, class_object) VALUES (%s, %s, %s, %s)",
@@ -109,11 +108,11 @@ def create_item(name, sell_in, quality, class_object):
 
 def delete_item(id):
     db = mysql.connector.connect(
-            host="database",
-            user="user",
-            password="password",
-            database="ollivanders",
-        )
+        host="database",
+        user="user",
+        password="password",
+        database="ollivanders",
+    )
     conn = db.cursor()
     conn.execute("DELETE FROM inventory WHERE id = %s", (id,))
     db.commit()
