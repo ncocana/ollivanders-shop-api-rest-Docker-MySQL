@@ -123,7 +123,7 @@ pytest
 
 Coverage is a tool for measuring the amount of code that is executed during automated tests. It provides a way to determine which parts of a codebase are being tested and which are not, which can help developers identify gaps in their test coverage and improve the overall quality of their code.   
 
-As you can see, through multiple tests, I managed to achieve a coverage of 100%, making sure that all the code is being tested and it works as it should. There's a few files that are excluded from coverage through the ```.coveragerc``` file, such as tests, the ```setup.py``` file, and the ```init_db.py``` file. The reason to exclude this one is because is intended to execute through the ```python``` prompt and it would be difficult to test it as such without modify it; there is, however, a try/except statement to handle potential errors that may arise when connecting to the database or executing the SQL query to insert the mock data. These try/except statements are also excluded from coverage.   
+As you can see, through multiple tests, I managed to achieve a coverage of 100%, making sure that all the code is being tested and it works as it should. There's a few files that are excluded from coverage through the ```.coveragerc``` file, such as tests, the ```setup.py``` file, and some try/except statements.   
 
 To execute Coverage, write on the terminal:   
 
@@ -150,16 +150,18 @@ black .
 
 Bandit is a security linter tool for Python that analyzes your code for potential security vulnerabilities. It checks for common security issues, such as SQL injection, cross-site scripting (XSS), and command injection, among others. Bandit uses static analysis techniques to scan your code and identify potential security problems, making it a valuable tool for ensuring that your code is secure and safe to run.   
 
-In my case, I have told bandit to analyze the folders and files concerning my project, leaving out those pertaining to configuration and other packages. I have also told it to skip the tests B101 and B307. B101 and B307 are security issues identifiers in Bandit that refers to the detection of certain vulnerabilities in my code.   
+In my case, I have told bandit to analyze the folders and files concerning my project, leaving out those pertaining to configuration and other packages. I have also told it to skip the tests B101, B307, and B106. B101, B307, and B106 are security issues identifiers in Bandit that refers to the detection of certain vulnerabilities in my code.   
 
 [B101](https://bandit.readthedocs.io/en/latest/plugins/b101_assert_used.html) detects the use of "assert" statements and flags them as a potential security issue, as an attacker may be able to disable or bypass the "assert" statement and exploit the underlying vulnerability. As I use asserts in my tests, I decided to exclude B101 from the analisys.   
 
 [B307](https://bandit.readthedocs.io/en/latest/blacklists/blacklist_calls.html#b307-eval) detects the use of ```eval()``` as a possibly insecure function. I tried to find alternatives to ```eval()```, but either they didn't work, or were too complicated to even try. So unfortunately, I ended up giving up and decided to exclude B307 from the analisys for the time being.   
 
+[B106](https://bandit.readthedocs.io/en/1.7.5/plugins/b106_hardcoded_password_funcarg.html) identifies function calls that are passed a string literal keyword argument and checks if the assigned local variable appears to be a password. In my case, it raises this issue due to the blunt use of a not-secured password. I'm aware this is a bad practice, and in another circunstances, I would have used something like an .env file to secure such data. But as this is intended to be a project to connect two Docker containers, I chose not to for the sake of the project's simplicity.   
+
 To execute Bandit, write on the terminal:   
 
 ```
-bandit -r ./database/ ./logic/ ./test/ ./app.py ./test_app.py --skip B101,B307
+bandit -r ./database/ ./logic/ ./test/ ./app.py ./test_app.py --skip B101,B307,B106
 ```
 
 ![Bandit](./docs/bandit.png)
